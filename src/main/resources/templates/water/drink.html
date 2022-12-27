@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="container">
+    <form action="/water/drink" th:action th:object="${waterReq}" method="post">
+<!--        <div th:text="${water.remains}" ></div>-->
+
+                <label> 잔 더 마셔야해요</label>
+    <div clalss="py-5 text-center">
+        <h2>물 마시는 중</h2>
+    </div>
+        <div>
+            <label for="userId">userId</label>
+            <input type="text" id="userId" class="form-control">
+        </div><div>
+        <label for="waterId">waterId</label>
+        <input type="text" id="waterId" class="form-control">
+    </div>
+
+    <div>
+        <label for="capacity">물 컵</label>
+        <input type="text" id="capacity" class="form-control">
+    </div>
+    <div>
+        <label for="cnt">컵 수</label>
+        <input type="text" id="cnt" class="form-control">
+    </div>
+
+
+</div>
+<hr class="my-4">
+<div class="row">
+    <div class="col">
+        <button class="w-100 btn btn-primary btn-lg"
+                onclick="location.href='drink.html'"
+                type="submit">
+            마셨다! </button> </div>
+    <div class="col">
+        <button class="w-100 btn btn-secondary btn-lg"
+                onclick="location.href='/'"
+                th:onclick="|location.href='@{/}'|" type="button">취소</button>
+    </div>
+</div>
+
+</form>
+
+
+
+</div>
+</body>
+</html>
