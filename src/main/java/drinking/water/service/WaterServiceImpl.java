@@ -35,6 +35,7 @@ public class WaterServiceImpl implements WaterService {
     public WaterRes update(WaterReq waterReq) {
 
         Water water = waterRepository.findById(waterReq.getUserId()).get();
+
         WaterRes waterRes = new WaterRes();
         water.setCapacity(waterReq.getCapacity());
         setMyStatusService(water, waterReq);
@@ -49,12 +50,13 @@ public class WaterServiceImpl implements WaterService {
             log.info("status capacity: " + water.getCapacity());
             log.info("remain cups : " + water.getRemainCup());
 
-            waterRepository.save(water);
+            waterRepository.update(water);
 
             waterRes.setGoal(water.getGoal());
             waterRes.setRemainPercent(setMyRemainPercent(water));
             waterRes.setRemainCup(water.getRemainCup());
             waterRes.setStatus(water.getStatus());
+            waterRes.setUserId(water.getUserId());
 
 
             return waterRes;
@@ -85,10 +87,10 @@ public class WaterServiceImpl implements WaterService {
         log.info("Goal : "+water.getGoal());
         log.info("Status : "+water.getStatus());
 
-        if (water.getGoal() - water.getRemainCup() < 0) {
-            log.info("다 마셨다!");
-            return -1;
-        }
+//        if (water.getGoal() - water.getRemainCup() < 0) {
+//            log.info("다 마셨다!");
+//            return -1;
+//        }
 
         water.setRemainCup((water.getGoal() - water.getStatus())/water.getCapacity());
         return water.getRemainCup();

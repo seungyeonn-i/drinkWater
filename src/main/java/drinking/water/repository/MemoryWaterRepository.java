@@ -21,6 +21,13 @@ public class MemoryWaterRepository implements WaterRepository{
         return water;
     }
 
+    @Override
+    public Water update(Water water) {
+        water.setUserId(water.getUserId());
+        store.put(water.getUserId(), water);
+        return water;
+    }
+
 
     @Override
     public Optional<Water> findById(int userId) {
