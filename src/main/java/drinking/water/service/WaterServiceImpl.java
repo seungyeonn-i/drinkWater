@@ -21,13 +21,15 @@ public class WaterServiceImpl implements WaterService {
     private final WaterRepository waterRepository;
 
     @Override
-    public Water join(WaterForm waterForm) {
+    public WaterRes join(WaterForm waterForm) {
         log.info("join done.");
 
         Water water = new Water();
         water.setGoal(waterForm.getGoal());
         water.setCapacity(waterForm.getCapacity());
-        return waterRepository.save(water);
+        waterRepository.save(water);
+
+        return setWaterRes(water);
 
     }
 
@@ -36,7 +38,6 @@ public class WaterServiceImpl implements WaterService {
 
         Water water = waterRepository.findById(waterReq.getUserId()).get();
 
-        WaterRes waterRes = new WaterRes();
         water.setCapacity(waterReq.getCapacity());
         setMyStatusService(water, waterReq);
 
@@ -52,17 +53,21 @@ public class WaterServiceImpl implements WaterService {
 
             waterRepository.update(water);
 
-            waterRes.setGoal(water.getGoal());
-            waterRes.setRemainPercent(setMyRemainPercent(water));
-            waterRes.setRemainCup(water.getRemainCup());
-            waterRes.setStatus(water.getStatus());
-            waterRes.setUserId(water.getUserId());
+            return setWaterRes(water);
 
 
-            return waterRes;
+    }
 
+    WaterRes setWaterRes(Water water) {
+        WaterRes waterRes = new WaterRes();
 
+        waterRes.setGoal(water.getGoal());
+        waterRes.setRemainPercent(setMyRemainPercent(water));
+        waterRes.setRemainCup(water.getRemainCup());
+        waterRes.setStatus(water.getStatus());
+        waterRes.setUserId(water.getUserId());
 
+        return waterRes;
     }
 
 

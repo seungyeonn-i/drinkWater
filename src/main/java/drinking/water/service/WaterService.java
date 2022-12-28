@@ -6,7 +6,7 @@ import drinking.web.WaterReq;
 import drinking.web.WaterRes;
 
 public interface WaterService {
-    Water join(WaterForm waterForm);
+    WaterRes join(WaterForm waterForm);
 
     WaterRes update(WaterReq waterReq);
 }
