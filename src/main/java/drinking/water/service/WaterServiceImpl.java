@@ -39,8 +39,11 @@ public class WaterServiceImpl implements WaterService {
         water.setCapacity(waterReq.getCapacity());
         setMyStatusService(water, waterReq);
 
-        if (water.getGoal() > water.getStatus()) {
             setMyRemainCup(water);
+            if (water.getGoal() < water.getStatus()) {
+                log.info("finish!");
+            }
+
 
             log.info("update done.");
             log.info("status capacity: " + water.getCapacity());
@@ -55,10 +58,7 @@ public class WaterServiceImpl implements WaterService {
 
 
             return waterRes;
-        }
-        else{
-            return null;
-        }
+
 
 
     }
