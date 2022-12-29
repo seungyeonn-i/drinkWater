@@ -6,6 +6,8 @@ import drinking.water.domain.waterweb.WaterReq;
 import drinking.water.domain.waterweb.WaterRes;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,8 +26,9 @@ public class WaterApiController {
 
     @ResponseBody
     @PostMapping("/water/apiJoin")
-    public WaterRes join(@RequestBody WaterForm waterForm) {
-        return waterService.join(waterForm);
+    public ResponseEntity<WaterRes> join(@RequestBody WaterForm waterForm) {
+        WaterRes join = waterService.join(waterForm);
+        return new ResponseEntity<>(join,HttpStatus.OK);
 
     }
 
@@ -36,7 +39,9 @@ public class WaterApiController {
 
     @ResponseBody
     @PostMapping("/water/apiDrink")
-    public WaterRes drink(@RequestBody WaterReq waterReq) {
-        return  waterService.update(waterReq);
+    public ResponseEntity<WaterRes> drink(@RequestBody WaterReq waterReq) {
+
+        WaterRes update = waterService.update(waterReq);
+        return new ResponseEntity<>(update, HttpStatus.OK);
     }
 }
