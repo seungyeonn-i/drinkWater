@@ -27,9 +27,7 @@ public class WaterApiController {
 
     @ResponseBody
     @PostMapping("/water/apiJoin")
-    public WaterRes join(@RequestBody WaterForm waterForm, HttpServletRequest request) {
-        log.info(String.valueOf(waterForm));
-
+    public WaterRes join(@RequestBody WaterForm waterForm) {
         return waterService.join(waterForm);
 
     }
@@ -39,15 +37,9 @@ public class WaterApiController {
         return "/water/drink";
     }
 
-    @PostMapping("/water/drink")
-    public String drink(@ModelAttribute WaterReq waterReq, HttpServletRequest request) {
-        log.info(String.valueOf(waterReq));
-        WaterRes update = waterService.update(waterReq);
-        if (update != null) {
-            log.info(update.toString());
-            return "/main";
-        }else{
-            return "/water/done";
-        }
+    @ResponseBody
+    @PostMapping("/water/apiDrink")
+    public WaterRes drink(@RequestBody WaterReq waterReq) {
+        return  waterService.update(waterReq);
     }
 }
