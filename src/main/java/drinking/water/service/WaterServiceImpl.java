@@ -1,17 +1,15 @@
 package drinking.water.service;
 
 import drinking.water.domain.Water;
-import drinking.water.repository.MemoryWaterRepository;
 import drinking.water.repository.WaterRepository;
-import drinking.web.WaterForm;
-import drinking.web.WaterReq;
-import drinking.web.WaterRes;
+import drinking.water.domain.waterweb.WaterForm;
+import drinking.water.domain.waterweb.WaterReq;
+import drinking.water.domain.waterweb.WaterRes;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
-import java.util.Optional;
 
 @Slf4j
 @Service

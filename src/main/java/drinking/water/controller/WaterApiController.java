@@ -1,16 +1,13 @@
 package drinking.water.controller;
 
-import drinking.water.domain.Water;
 import drinking.water.service.WaterService;
-import drinking.web.WaterForm;
-import drinking.web.WaterReq;
-import drinking.web.WaterRes;
+import drinking.water.domain.waterweb.WaterForm;
+import drinking.water.domain.waterweb.WaterReq;
+import drinking.water.domain.waterweb.WaterRes;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Slf4j
 @Controller

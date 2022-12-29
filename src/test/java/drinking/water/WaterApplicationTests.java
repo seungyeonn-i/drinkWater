@@ -1,15 +1,10 @@
 package drinking.water;
 
-import drinking.water.domain.Water;
-import drinking.water.repository.MemoryWaterRepository;
 import drinking.water.repository.WaterRepository;
 import drinking.water.service.WaterService;
-import drinking.web.WaterReq;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.HashMap;
 
 @SpringBootTest
 class WaterApplicationTests {

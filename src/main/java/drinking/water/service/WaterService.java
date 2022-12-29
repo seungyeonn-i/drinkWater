@@ -1,9 +1,8 @@
 package drinking.water.service;
 
-import drinking.water.domain.Water;
-import drinking.web.WaterForm;
-import drinking.web.WaterReq;
-import drinking.web.WaterRes;
+import drinking.water.domain.waterweb.WaterForm;
+import drinking.water.domain.waterweb.WaterReq;
+import drinking.water.domain.waterweb.WaterRes;
 
 public interface WaterService {
     WaterRes join(WaterForm waterForm);

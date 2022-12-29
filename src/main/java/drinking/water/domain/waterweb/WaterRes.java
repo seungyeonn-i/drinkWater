@@ -1,4 +1,4 @@
-package drinking.web;
+package drinking.water.domain.waterweb;
 
 import lombok.Data;
 import lombok.Getter;
