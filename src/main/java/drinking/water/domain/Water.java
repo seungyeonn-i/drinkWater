@@ -20,7 +20,7 @@ public class Water {
 
     //    int drinkCnt; // 물 먹은 횟수
     Map<Integer, Integer> drinkCnt = new HashMap<>();
-    // Map<capacity,cnt>
+    // Map<waterId,waters>
 //
     int remainCup; // 남은 물 컵 수
 //    int remainPercent;

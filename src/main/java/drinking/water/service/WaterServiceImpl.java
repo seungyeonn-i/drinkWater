@@ -80,7 +80,8 @@ public class WaterServiceImpl implements WaterService {
 
         // 마신 횟수 map 업데이트
         Map<Integer, Integer> drinkCnt = water.getDrinkCnt();
-        drinkCnt.put(waterReq.getCapacity(), waterReq.getCnt());
+        drinkCnt.put(waterReq.getWaterId(), waterReq.getCapacity() * waterReq.getCnt());
+        log.info(drinkCnt.toString());
 
         return water.getStatus();
     }
