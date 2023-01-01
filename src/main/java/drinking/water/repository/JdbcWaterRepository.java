@@ -51,13 +51,15 @@ public class JdbcWaterRepository implements WaterRepository {
 //        store.put(water.getUserId(), water);
 //        return water;
 
-        Water find = findById(water.getUserId()).get();
-
 
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
         jdbcInsert.withTableName("Water").usingGeneratedKeyColumns("userId");
 
+        // status 변경
         jdbcTemplate.update("update Water set status=? where userId=?", water.getStatus(), water.getUserId());
+        // capacity 변경 -> 쿼리 한번에 진행하는 방법 고안
+        jdbcTemplate.update("update Water set capacity=? where userId=?", water.getCapacity(), water.getUserId());
+
 
         return findById(water.getUserId()).get() ;
     }
