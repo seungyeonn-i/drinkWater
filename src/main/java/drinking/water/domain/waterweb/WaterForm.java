@@ -8,6 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class WaterForm {
+    // 물 목표량 등록
     int goal;
     int capacity;
 }
