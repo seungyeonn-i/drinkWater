@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Slf4j
@@ -57,7 +59,7 @@ public class JdbcWaterRepository implements WaterRepository {
 
 
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
-        jdbcInsert.withTableName("Drink").usingColumns("userId","waterId");
+        jdbcInsert.withTableName("Drink").usingColumns("userId","waterId","ts","drinkHow"); ///????
 
 
         Map<String, Object> parameters = new HashMap<>();
@@ -67,8 +69,12 @@ public class JdbcWaterRepository implements WaterRepository {
         for (Date date : drinkCnt.keySet()) {
             parameters.put("userId", water.getUserId());
             parameters.put("waterId", water.getWaterId());
-            parameters.put("ts", date);
+
+            parameters.put("ts", Timestamp.valueOf(LocalDateTime.now()));
             parameters.put("drinkHow", drinkCnt.get(date).intValue());
+
+            log.info("ts={},drinkHow={}", date, drinkCnt.get(date).intValue());
+
             jdbcInsert.execute(new MapSqlParameterSource(parameters));
 
         } // 계속 저장되는지 확인
