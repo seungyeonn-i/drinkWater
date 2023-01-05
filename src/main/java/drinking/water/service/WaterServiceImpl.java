@@ -18,6 +18,9 @@ public class WaterServiceImpl implements WaterService {
 
     private final WaterRepository waterRepository;
 
+
+    // waterall userid 따라서
+
     @Override
     public WaterRes join(WaterForm waterForm) {
         log.info("join done.");

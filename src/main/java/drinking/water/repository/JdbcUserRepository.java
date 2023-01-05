@@ -48,6 +48,13 @@ public class JdbcUserRepository implements UserRepository{
     }
 
     @Override
+    public Optional<User> findByLoginId(String loginId) {
+        List<User> result = jdbcTemplate.query("select * from User where loginId=?", userRowMapper(), loginId);
+        return Optional.ofNullable(result.get(0));
+    }
+
+
+    @Override
     public List<User> findAll() {
         return jdbcTemplate.query("select * from User", userRowMapper());
     }

@@ -13,5 +13,7 @@ public interface UserRepository {
 
     Optional<User> findById(int userId);
 
+    Optional<User> findByLoginId(String loginId);
+
     List<User> findAll();
 }
