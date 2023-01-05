@@ -4,6 +4,7 @@ import drinking.water.domain.Water;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -31,6 +32,11 @@ public class MemoryWaterRepository implements WaterRepository{
     @Override
     public Optional<Water> findById(int userId) {
         return Optional.ofNullable(store.get(userId));
+    }
+
+    @Override
+    public List<Map<Integer, Integer>> findByIdDrink(int userId) {
+        return null;
     }
 
 

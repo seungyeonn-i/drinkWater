@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -59,6 +61,11 @@ public class WaterServiceImpl implements WaterService {
 
     }
 
+//    @Override
+//    public Map<Integer, Integer> drinkCnt(int userId) {
+//        return ;
+//    }
+
     WaterRes setWaterRes(Water water) {
         WaterRes waterRes = new WaterRes();
 
@@ -82,9 +89,11 @@ public class WaterServiceImpl implements WaterService {
         water.setStatus(water.getStatus() + waterReq.getCapacity() * waterReq.getCnt());
 
         // 마신 횟수 map 업데이트
-        Map<Integer, Integer> drinkCnt = water.getDrinkCnt();
-        drinkCnt.put(waterReq.getWaterId(), waterReq.getCapacity() * waterReq.getCnt());
+        Map<Date, Integer> drinkCnt = water.getDrinkCnt();
+        drinkCnt.put(new Date(), waterReq.getCapacity() * waterReq.getCnt());
         log.info(drinkCnt.toString());
+        water.setWaterId(waterReq.getWaterId());
+
 
         return water.getStatus();
     }

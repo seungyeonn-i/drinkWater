@@ -9,10 +9,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Slf4j
 @Repository
@@ -52,13 +49,29 @@ public class JdbcWaterRepository implements WaterRepository {
 //        return water;
 
 
-        SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
-        jdbcInsert.withTableName("Water").usingGeneratedKeyColumns("userId");
 
         // status 변경
         jdbcTemplate.update("update Water set status=? where userId=?", water.getStatus(), water.getUserId());
         // capacity 변경 -> 쿼리 한번에 진행하는 방법 고안
         jdbcTemplate.update("update Water set capacity=? where userId=?", water.getCapacity(), water.getUserId());
+
+
+        SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+        jdbcInsert.withTableName("Drink").usingColumns("userId","waterId");
+
+
+        Map<String, Object> parameters = new HashMap<>();
+        Map<Date, Integer> drinkCnt = water.getDrinkCnt();
+
+
+        for (Date date : drinkCnt.keySet()) {
+            parameters.put("userId", water.getUserId());
+            parameters.put("waterId", water.getWaterId());
+            parameters.put("ts", date);
+            parameters.put("drinkHow", drinkCnt.get(date).intValue());
+            jdbcInsert.execute(new MapSqlParameterSource(parameters));
+
+        } // 계속 저장되는지 확인
 
 
         return findById(water.getUserId()).get() ;
@@ -71,6 +84,11 @@ public class JdbcWaterRepository implements WaterRepository {
         return Optional.ofNullable(result.get(0));
     }
 
+    @Override
+    public List<Map<Integer, Integer>> findByIdDrink(int userId) {
+        return null;
+    }
+
     private RowMapper<Water> waterRowMapper() {
         return (rs,rowNum) -> {
             Water water = new Water();
@@ -80,6 +98,7 @@ public class JdbcWaterRepository implements WaterRepository {
             water.setGoal(rs.getInt("goal"));
             water.setStatus(rs.getInt("status"));
             water.setRemainCup(rs.getInt("remainCup"));
+
 
 
 //            water.setDrinkCnt((Map<Integer, Integer>)rs.getObject(1));

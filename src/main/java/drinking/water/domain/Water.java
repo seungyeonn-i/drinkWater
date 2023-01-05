@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,10 +20,11 @@ public class Water {
     int capacity; // 컵의 용량
 
     //    int drinkCnt; // 물 먹은 횟수
-    Map<Integer, Integer> drinkCnt = new HashMap<>();
+    Map<Date, Integer> drinkCnt = new HashMap<>();
     // Map<waterId,waters>
 //
     int remainCup; // 남은 물 컵 수
+    int waterId;
 //    int remainPercent;
 
 
