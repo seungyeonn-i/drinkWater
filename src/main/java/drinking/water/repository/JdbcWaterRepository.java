@@ -26,20 +26,19 @@ public class JdbcWaterRepository implements WaterRepository {
     @Override
     public Water save(Water water) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
-        jdbcInsert.withTableName("Water").usingGeneratedKeyColumns("userId");
+        jdbcInsert.withTableName("Water").usingGeneratedKeyColumns("waterId");
 
         Map<String, Object> parameters = new HashMap<>();
 
-//        parameters.put("userId", water.getUserId());
+        parameters.put("userId", water.getUserId());
         parameters.put("capacity", water.getCapacity());
-        parameters.put("drinkCnt", water.getDrinkCnt());
         parameters.put("goal", water.getGoal());
         parameters.put("remainCup", water.getRemainCup());
         parameters.put("status", water.getStatus());
 
 
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
-        water.setUserId(key.intValue());
+//        water.setUserId(key.intValue());
 
         return water;
     }
@@ -87,6 +86,7 @@ public class JdbcWaterRepository implements WaterRepository {
     public Optional<Water> findById(int userId) {
 
         List<Water> result = jdbcTemplate.query("select * from Water where userId = ?", waterRowMapper(), userId);
+        log.info(result.toString());
         return Optional.ofNullable(result.get(0));
     }
 

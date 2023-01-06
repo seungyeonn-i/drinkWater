@@ -11,6 +11,7 @@ import java.util.Optional;
 public interface WaterRepository {
 
     Water save(Water water);
+
     Water update(Water water);
 
     Optional<Water> findById(int userId);

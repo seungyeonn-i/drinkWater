@@ -28,6 +28,7 @@ public class WaterServiceImpl implements WaterService {
         log.info("join done.");
 
         Water water = new Water();
+        water.setUserId(waterForm.getUserId());
         water.setGoal(waterForm.getGoal());
         water.setCapacity(waterForm.getCapacity());
         waterRepository.save(water);
