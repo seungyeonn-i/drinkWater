@@ -1,37 +1,84 @@
 package drinking.water.domain;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import drinking.water.entity.DrinkStatus;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@Data
-@Getter
-@Setter
+@Entity
+@Table(name = "Water")
 public class Water {
 
-    int userId;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long waterId;
 
-    int goal; // 전체 먹을 물의 양
-    int status; // 현재 먹은 물의 양
-    int capacity; // 컵의 용량
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
 
-    //    int drinkCnt; // 물 먹은 횟수
-    Map<Date, Integer> drinkCnt = new HashMap<>();
-    // Map<waterId,waters>
-//
-    int remainCup; // 남은 물 컵 수
-    int waterId;
-//    int remainPercent;
+    private int cupSize; //capacity
+    private int remainCup;
 
+    private int current;
+    private int goal;
 
-    // goal / capacity = 먹어야하는 물 컵 수
-    // 물을 먹으면 drinkCnt++ , status++
+    @OneToMany(mappedBy = "water")
+    private List<DrinkStatus> drinkStatus = new ArrayList<>();
 
-    // status = goal - capacity * drinkCnt;
+    public Long getWaterId() {
+        return waterId;
+    }
 
-    // cups = ( goal - status ) / capacity
+    public void setWaterId(Long waterId) {
+        this.waterId = waterId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public int getCupSize() {
+        return cupSize;
+    }
+
+    public void setCupSize(int cupSize) {
+        this.cupSize = cupSize;
+    }
+
+    public int getRemainCup() {
+        return remainCup;
+    }
+
+    public void setRemainCup(int remainCup) {
+        this.remainCup = remainCup;
+    }
+
+    public int getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(int current) {
+        this.current = current;
+    }
+
+    public int getGoal() {
+        return goal;
+    }
+
+    public void setGoal(int goal) {
+        this.goal = goal;
+    }
+
+    public List<DrinkStatus> getDrinkStatus() {
+        return drinkStatus;
+    }
+
+    public void setDrinkStatus(List<DrinkStatus> drinkStatus) {
+        this.drinkStatus = drinkStatus;
+    }
 }

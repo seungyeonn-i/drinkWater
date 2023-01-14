@@ -6,8 +6,6 @@ import drinking.water.domain.userweb.RegisterForm;
 import drinking.water.domain.userweb.UserRes;
 import drinking.water.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,6 +47,6 @@ public class UserServiceImpl implements UserService {
                 .filter(m -> m.getLoginPw().equals(loginReq.getLoginPw()))
                 .orElse(null);
 
-        return new UserRes(user.getUserId());
+        return new UserRes(Math.toIntExact(user.getUserId()));
     }
 }

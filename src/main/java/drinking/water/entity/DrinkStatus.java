@@ -1,5 +1,7 @@
 package drinking.water.entity;
 
+import drinking.water.domain.Water;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -11,7 +13,7 @@ public class DrinkStatus {
     private Long statusId;
 
     @ManyToOne
-    @JoinColumn(name = "DRINK_STATUS")
+    @JoinColumn(name = "drinkStatus")
     private Water water;
 
     private LocalDateTime drinkDate;

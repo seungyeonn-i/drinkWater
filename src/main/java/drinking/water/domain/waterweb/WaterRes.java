@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter@Setter
 public class WaterRes {
 
-    int userId;
+    Long userId;
 
     int goal;
     int remainCup; // 남은 먹을 물 컵 수

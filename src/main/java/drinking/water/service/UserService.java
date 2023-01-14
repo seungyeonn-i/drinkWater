@@ -4,7 +4,6 @@ import drinking.water.domain.User;
 import drinking.water.domain.userweb.LoginReq;
 import drinking.water.domain.userweb.RegisterForm;
 import drinking.water.domain.userweb.UserRes;
-import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
 
