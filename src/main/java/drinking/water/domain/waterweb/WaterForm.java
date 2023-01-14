@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class WaterForm {
     // 물 목표량 등록
-    int userId;
+    Long userId;
     int goal;
     int capacity;
 }

@@ -27,7 +27,9 @@ public class WaterServiceImpl implements WaterService {
     public WaterRes join(WaterForm waterForm) {
 
         Water water = new Water();
+//        water.setUser(new User().setUserId(waterForm.getUserId()););
 //        water.setUser(new User((long) waterForm.getUserId()));
+        water.setUser(new User(waterForm.getUserId()));
         water.setGoal(waterForm.getGoal());
         water.setCupSize(waterForm.getCapacity());
 

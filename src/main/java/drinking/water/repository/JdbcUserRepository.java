@@ -61,7 +61,7 @@ public class JdbcUserRepository implements UserRepository{
 
     private RowMapper<User> userRowMapper() {
         return (rs,rowNum) -> {
-            User user = new User();
+            User user = new User(rs.getLong("user_id"));
 //            user.setUserId(rs.getInt("userId"));
             user.setUserName(rs.getString("userName"));
             user.setUserEmail(rs.getString("userEmail"));

@@ -1,6 +1,9 @@
 package drinking.water.domain;
 
 import drinking.water.entity.DrinkStatus;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,6 +12,8 @@ import java.util.List;
 @Entity
 @Table(name = "Water")
 public class Water {
+
+    public Water(){}
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long waterId;
