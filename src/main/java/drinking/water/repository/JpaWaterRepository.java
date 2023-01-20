@@ -40,11 +40,20 @@ public class JpaWaterRepository implements WaterRepository  {
 
     @Override
     public Water update(Water water) {
+//        Water findWater = em.find(Water.class, water.getWaterId());
+//        findWater.setCurrent(water.getCurrent());
+//        findWater.setCupSize(water.getCupSize());
+//        em.persist(findWater);
+//        em.flush();
+//        em.clear();
+//        return findWater;
         return null;
     }
 
     @Override
     public Optional<Water> findById(int userId) {
+
+//        (em.find(Water.class, userId)).
         return Optional.empty();
     }
 
