@@ -11,7 +11,7 @@ public interface UserRepository {
 
     UserRes save(RegisterForm registerForm);
 
-    Optional<User> findById(int userId);
+    Optional<User> findById(Long userId);
 
     Optional<User> findByLoginId(String loginId);
 

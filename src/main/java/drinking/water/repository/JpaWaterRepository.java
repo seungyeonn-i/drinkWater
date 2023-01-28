@@ -2,9 +2,12 @@ package drinking.water.repository;
 
 import drinking.water.domain.User;
 import drinking.water.domain.Water;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Map;
@@ -12,15 +15,11 @@ import java.util.Optional;
 
 @Repository
 @Transactional
+@RequiredArgsConstructor
 public class JpaWaterRepository implements WaterRepository  {
 
-
+    @PersistenceContext
     private final EntityManager em;
-
-    public JpaWaterRepository(EntityManager em) {
-        this.em = em;
-    }
-
 
     @Override
     public Water save(Water water) {
@@ -34,27 +33,24 @@ public class JpaWaterRepository implements WaterRepository  {
         System.out.println("getUserId"+findWater.getUser().getUserId());
         System.out.println("getWaterId"+findWater.getWaterId());
         return findWater;
-//        return null;
     }
 
 
     @Override
-    public Water update(Water water) {
-//        Water findWater = em.find(Water.class, water.getWaterId());
-//        findWater.setCurrent(water.getCurrent());
-//        findWater.setCupSize(water.getCupSize());
-//        em.persist(findWater);
-//        em.flush();
-//        em.clear();
-//        return findWater;
-        return null;
+    public Water update(Water newWater) {
+        em.persist(newWater);
+
+        return newWater;
+
     }
 
     @Override
-    public Optional<Water> findById(int userId) {
+    public Optional<Water> findById(Long waterId) {
 
 //        (em.find(Water.class, userId)).
-        return Optional.empty();
+
+//        return (em.find(Water.class, userId)).;
+        return Optional.ofNullable(em.find(Water.class,waterId));
     }
 
     @Override

@@ -21,7 +21,6 @@ public class DrinkStatus {
     private LocalDateTime drinkDate;
     private int how;
 
-
     public LocalDateTime getDrinkDate() {
         return drinkDate;
     }

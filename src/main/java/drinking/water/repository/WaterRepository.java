@@ -14,7 +14,7 @@ public interface WaterRepository {
 
     Water update(Water water);
 
-    Optional<Water> findById(int userId);
+    Optional<Water> findById(Long waterId);
 
     List<Map<Integer, Integer>> findByIdDrink(int userId);
 

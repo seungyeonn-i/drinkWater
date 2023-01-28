@@ -1,14 +1,20 @@
 package drinking.water.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "Member")
 public class User {
 
     public User(){}
+
+    public User(String userName, String userEmail, String userPhone, String loginId, String loginPw) {
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.userPhone = userPhone;
+        this.loginId = loginId;
+        this.loginPw = loginPw;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

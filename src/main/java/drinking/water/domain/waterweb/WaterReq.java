@@ -9,8 +9,8 @@ import lombok.Setter;
 @Setter
 public class WaterReq {
 
-    int userId;
-    int waterId;
+    Long userId;
+    Long waterId;
 
     int capacity;
     int cnt;

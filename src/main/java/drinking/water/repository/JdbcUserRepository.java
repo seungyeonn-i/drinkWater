@@ -41,9 +41,9 @@ public class JdbcUserRepository implements UserRepository{
     }
 
     @Override
-    public Optional<User> findById(int userId) {
+    public Optional<User> findById(Long userId) {
         List<User> result = jdbcTemplate.query("select * from User where userId=?", userRowMapper(), userId);
-        return Optional.ofNullable(result.get(userId));
+        return Optional.ofNullable(result.get(userId.intValue()));
 //        return Optional.ofNullable(result.get(0));
     }
 
