@@ -15,7 +15,7 @@ public class DrinkStatus {
     private Long statusId;
 
     @ManyToOne
-    @JoinColumn(name = "drinkStatus")
+    @JoinColumn(name = "water")
     private Water water;
 
     private LocalDateTime drinkDate;

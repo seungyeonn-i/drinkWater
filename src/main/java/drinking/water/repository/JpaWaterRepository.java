@@ -2,6 +2,7 @@ package drinking.water.repository;
 
 import drinking.water.domain.User;
 import drinking.water.domain.Water;
+import drinking.water.entity.DrinkStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -51,6 +52,14 @@ public class JpaWaterRepository implements WaterRepository  {
 
 //        return (em.find(Water.class, userId)).;
         return Optional.ofNullable(em.find(Water.class,waterId));
+    }
+
+    @Override
+    public List<DrinkStatus> findAllByUserId(Long userId) {
+
+        return em.createQuery("select w.drinkStatus from Water w ,DrinkStatus s where w.user.userId= :userId having s.water.user.userId= :userId", DrinkStatus.class)
+                .setParameter("userId", userId)
+                .getResultList();
     }
 
     @Override

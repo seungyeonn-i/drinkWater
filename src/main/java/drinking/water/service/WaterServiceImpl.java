@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -56,8 +57,14 @@ public class WaterServiceImpl implements WaterService {
 
     }
 
+
+    public List<DrinkStatus> findAll(Long userId){
+        return waterRepository.findAllByUserId(userId);
+    }
+
+
 //    @Override
-//    public Map<Integer, Integer> drinkCnt(int userId) {
+//    public Map<Integer, Integer> drinkCnt(int userId) {ㄴ
 //        return ;
 //    }
 

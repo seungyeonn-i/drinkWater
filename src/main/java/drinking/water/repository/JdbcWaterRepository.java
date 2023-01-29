@@ -104,6 +104,11 @@ public class JdbcWaterRepository implements WaterRepository {
         return null;
     }
 
+    @Override
+    public List<DrinkStatus> findAllByUserId(Long userId) {
+        return null;
+    }
+
     private RowMapper<Water> waterRowMapper() {
         return (rs,rowNum) -> {
             Water water = new Water();

@@ -1,6 +1,7 @@
 package drinking.water.repository;
 
 import drinking.water.domain.Water;
+import drinking.water.entity.DrinkStatus;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,4 +19,7 @@ public interface WaterRepository {
 
     List<Map<Integer, Integer>> findByIdDrink(int userId);
 
-}
+    List<DrinkStatus> findAllByUserId(Long userId) ;
+
+
+    }

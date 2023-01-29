@@ -21,14 +21,6 @@ public class Water {
         this.goal = goal;
     }
 
-    public Water(User user, int cupSize, int remainCup, int current, int goal, List<DrinkStatus> drinkStatus) {
-        this.user = user;
-        this.cupSize = cupSize;
-        this.remainCup = remainCup;
-        this.current = current;
-        this.goal = goal;
-        this.drinkStatus = drinkStatus;
-    }
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long waterId;

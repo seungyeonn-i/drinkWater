@@ -1,5 +1,6 @@
 package drinking.water.controller;
 
+import drinking.water.entity.DrinkStatus;
 import drinking.water.service.WaterService;
 import drinking.water.domain.waterweb.WaterForm;
 import drinking.water.domain.waterweb.WaterReq;
@@ -10,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -43,5 +46,11 @@ public class WaterApiController {
 
         WaterRes update = waterService.update(waterReq);
         return new ResponseEntity<>(update, HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @GetMapping("/user/{userId}/drinkStatus")
+    public ResponseEntity<List<DrinkStatus>> drinkStatus (@PathVariable Long userId){
+        return new ResponseEntity<>(waterService.findAll(userId),HttpStatus.OK);
     }
 }
